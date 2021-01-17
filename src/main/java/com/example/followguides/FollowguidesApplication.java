@@ -26,6 +26,15 @@ public class FollowguidesApplication {
 	@PostConstruct
 	private void initializeRepository() {
 		customerRepository.save(new Customer("John", "Doe"));
+		customerRepository.save(new Customer("Emily", "Clark"));
+		customerRepository.save(new Customer("Bridget", "Jones"));
+		customerRepository.save(new Customer("Jim", "Clark"));
+		customerRepository.save(new Customer("Ronnie", "Atkins"));
+		customerRepository.save(new Customer("Christian", "Bale"));
+		customerRepository.save(new Customer("Robert", "Palmer"));
+		customerRepository.save(new Customer("Sebastian", "Bourdais"));
+		customerRepository.save(new Customer("Felix", "Felicis"));
+		customerRepository.save(new Customer("Robert", "Kubica"));
 		System.out.println("Post construct");
 		System.out.println(customerRepository.findAll());
 	}
