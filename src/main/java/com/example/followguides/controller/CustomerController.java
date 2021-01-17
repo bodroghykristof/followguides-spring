@@ -1,7 +1,9 @@
 package com.example.followguides.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,5 +36,23 @@ public class CustomerController {
 	public Optional<Customer> find(@PathVariable Long id) {
 		return customerRepository.findById(id);
 	}
+	
+	@GetMapping("/search")
+	public List<Customer> search(@RequestParam(value = "first", defaultValue = "") String firstName,
+								@RequestParam(value = "last", defaultValue = "") String lastName) {
+		
+		if (firstName.equals("") && lastName.equals("")) return new ArrayList<>();
+		else if (lastName.equals("")) return customerRepository.findByFirstName(firstName);
+		else if (firstName.equals("")) return customerRepository.findByLastName(lastName);
+		
+		else {
+			List<Customer> resultsByFirstName = customerRepository.findByFirstName(firstName);
+			List<Customer> resultsByLastName = customerRepository.findByLastName(lastName);
+			return resultsByFirstName.stream()
+								.filter(element -> resultsByLastName.contains(element))
+								.collect(Collectors.toList());		}
+		
+	}
+	
 
 }
