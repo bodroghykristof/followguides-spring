@@ -35,8 +35,6 @@ public class FollowguidesApplication {
 		customerRepository.save(new Customer("Sebastian", "Bourdais"));
 		customerRepository.save(new Customer("Felix", "Felicis"));
 		customerRepository.save(new Customer("Robert", "Kubica"));
-		System.out.println("Post construct");
-		System.out.println(customerRepository.findAll());
 	}
 
 }
